@@ -2,7 +2,8 @@
 """
 Author: Nick Ormerod
 Date: 28/ 11/ 2002
-Ticky_check.py is the main code for this example where we read through each error and each user in the file in the syslog.log file
+Ticky_check.py is the main code for this example where we read through each error and each user in the file in the syslog.log file.
+Completed using hints and guidance from the course.
 """
 import re
 import sys
@@ -14,17 +15,17 @@ error = {}
 
 logfile = open("syslog.log")
 
-for logline in logfile:
-    logline = logline.strip()
-    username = (re.search(r"\((.*)\)", logline)).group(1)
-    message = (re.search(r"(ERROR|INFO)", logline)).group(1)
+for line in logfile:
+    line = line.strip()
+    username = (re.search(r"\((.*)\)", line)).group(1)
+    message = (re.search(r"(ERROR|INFO)", line)).group(1)
     user_count = {"INFO": 0, "ERROR": 0}
     if (username not in per_user):
         per_user[username] = user_count
     per_user[username][message] += 1
 
     if message == "ERROR":
-        system_error = (re.search(r"ERROR (.*) ", logline)).group(1)
+        system_error = (re.search(r"ERROR (.*) ", line)).group(1)
         if (system_error not in error):
             error[system_error] = 0
         error[system_error] += 1
