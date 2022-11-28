@@ -12,4 +12,7 @@ What you'll do
 -Write to a file in CSV format
 -Move files to the appropriate directory for use with the CSV->HTML converter
 
-
+./csv_to_html.py user_statistics.csv /var/www/html/userfile.html 
+or
+./csv_to_html.py error_message.csv /var/www/html/errorfile.html
+are the commands in the shell that can be executed to convert the selected csv into an html
